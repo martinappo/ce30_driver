@@ -44,6 +44,17 @@ bool UDPServer::Start() {
   return true;
 }
 
+bool UDPServer::ChangeDeviceIp(const std::string &ip) {
+    if (!socket_) {
+        socket_.reset(new UDPSocket(ip_, port_));
+    }
+    if (!Connect(*socket_)) {
+        return false;
+    }
+
+    return SetDeviceIp(ip, *socket_);
+}
+
 void UDPServer::OnScanReceived(std::shared_ptr<PointCloud> pointcloud) {
 
 }

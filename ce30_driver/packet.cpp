@@ -378,6 +378,10 @@ string VersionResponsePacket::GetVersionString() const {
   return result;
 }
 
+IpChangeRequestPacket::IpChangeRequestPacket(const std::string &ip) : RequestPacket() {
+    SetCmdString("ifconfig " + ip);
+}
+
 SetIDRequestPacket::SetIDRequestPacket(const int32_t& id) : RequestPacket() {
   auto b4 = B4ToByteHexStrs<int32_t>(id);
   if (b4.empty()) {

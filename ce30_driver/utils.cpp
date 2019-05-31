@@ -47,6 +47,27 @@ bool GetDeviceID(int& id, UDPSocket& socket) {
   return false;
 }
 
+bool SetDeviceIp(const std::string &ip, UDPSocket& socket) {
+    IpChangeRequestPacket set_ip_request(ip);
+    auto diagnose = socket.SendPacket(set_ip_request);
+    if (diagnose == Diagnose::send_successful) {
+        CommonResponsePacket set_ip_response;
+        diagnose = socket.GetPacket(set_ip_response);
+        if (diagnose == Diagnose::receive_successful) {
+            if (set_ip_response.Successful()) {
+                return true;
+            } else {
+                cerr << "'Set IP' Failed" << endl;
+            }
+        } else {
+            cerr << "'Set IP' not Responding" << endl;
+        }
+    } else {
+        cerr << "Request 'Set IP' Failed" << endl;
+    }
+    return false;
+}
+
 bool SetDeviceID(const int& id, UDPSocket& socket) {
   SetIDRequestPacket set_id_request(id);
   auto diagnose = socket.SendPacket(set_id_request);

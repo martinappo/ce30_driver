@@ -311,6 +311,14 @@ struct API VersionResponsePacket : public PacketBase {
 };
 
 /**
+ * @brief packet of command for setting device Ip address in format
+ * @param ip - ip address in format X X X X where Xn is part of ip. Eg, if you want the ip to be 192.168.1.80, the input string should be 192 168 1 80
+ */
+struct API IpChangeRequestPacket : public RequestPacket {
+    IpChangeRequestPacket(const std::string &ip);
+};
+
+/**
  * @brief packet of command for setting device ID
  */
 struct API SetIDRequestPacket : public RequestPacket {

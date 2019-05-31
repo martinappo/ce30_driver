@@ -23,6 +23,14 @@ namespace ce30_driver {
 bool API GetVersion(std::string& version, UDPSocket& socket);
 
 /**
+ * @brief set device IP
+ * @param ip - ip address in format X X X X where Xn is part of ip. Eg, if you want the ip to be 192.168.1.80, the input string should be 192 168 1 80
+ * @param socket UDP socket object
+ * @return true if successfully set device IP; otherwise, false
+ */
+bool API SetDeviceIp(const std::string& ip, UDPSocket& socket);
+
+/**
  * @brief retrieve device ID [under development]
  * @param id device ID
  * @param socket UDP socket object

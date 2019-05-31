@@ -37,7 +37,15 @@ public:
   void SetPort(const unsigned short& port) {
     port_ = port;
   }
+
   /**
+   * @brief set device IP
+   * @param ip - ip address in format X X X X where Xn is part of ip. Eg, if you want the ip to be 192.168.1.80, the input string should be 192 168 1 80
+   * @return true if successfully set device IP; otherwise, false
+   */
+  bool ChangeDeviceIp(const std::string &ip);
+
+    /**
    * @brief start server
    * @return true is successful; otherwise, false
    */
